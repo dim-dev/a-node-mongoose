@@ -86,7 +86,6 @@ function onListening() {
  */
 
 server.listen(port, () => {
-  debug("processss");
   if (process.send) {
     process.send('online');
   }
