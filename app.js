@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
-mongoose.connect('mongodb://dim-dev:Kanenas0001!@ds135653.mlab.com:35653/standupmeetingnotes');
+mongoose.connect('mongodb://dim-dev:Kanenas0001!@ds135653.mlab.com:35653/standupmeetingnotes', { useNewUrlParser: true });
 const app = express();
 
 // assign the swig view engine to .html files.
@@ -21,7 +21,7 @@ app.set('view engine', 'html');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
