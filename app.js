@@ -4,10 +4,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const swig = require('swig');
+const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
+mongoose.connect('mongodb://dim-dev:Kanenas0001!@ds135653.mlab.com:35653/standupmeetingnotes');
 const app = express();
 
 // assign the swig view engine to .html files.
