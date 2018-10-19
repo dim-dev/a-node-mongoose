@@ -4,9 +4,9 @@ const standupCtrl = require('../controllers/standup.server.controller');
 const router = express.Router();
 
 /* GET home page. */
-router.get('/', (req, res) => {
-  res.render('index', { title: 'Virtual Stand-up Meeting Notebook', subtitle: 'Submit your daily meeting notes' });
-});
+router.get('/', (req, res) => { standupCtrl.list(req, res); });
+
+router.post('/', (req, res) => { standupCtrl.filterByMember(req, res); });
 
 /* GET new note page. */
 router.get('/newnote', (req, res) => standupCtrl.getNote(req, res));
