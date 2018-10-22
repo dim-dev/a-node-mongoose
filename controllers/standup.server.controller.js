@@ -15,19 +15,19 @@ exports.list = (req, res) => {
 };
 
 exports.filterByMember = (req, res) => {
-  const query = Standup.find();
+  let query = Standup.find();
   const filter = req.body.memberName;
+  if (filter.length > 0) {
+    query = Standup.find({ memberName: filter });
+  }
 
   query.sort({ createdOn: 'desc' });
-  if (filter.legth > 0) {
-    query.where({ memberName: filter });
-  }
 
   query.exec((err, results) => {
     res.render('index',
       {
-        title: 'Virtual Stand-up Meeting Notebookkk',
-        subtitle: 'Submit your daily meeting notessss',
+        title: 'Virtual Stand-up Meeting Notebook',
+        subtitle: 'Submit your daily meeting notes',
         notes: results,
       });
   });
