@@ -41,8 +41,14 @@ exports.create = (req, res) => {
     workToday: req.body.workToday,
     impediment: req.body.impediment,
   });
-  entry.save();
-  res.redirect(301, '/');
+  entry.save((err) => {
+    if (err) {
+      const errMsg = `there was an error saving the note. ${err.toString()}`;
+      res.render('newnote', { title: 'Standup New Note (error)', message: errMsg });
+    } else {
+      res.redirect(301, '/');
+    }
+  });
 };
 
 exports.getNote = (req, res) => {
